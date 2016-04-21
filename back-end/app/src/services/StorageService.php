@@ -13,9 +13,10 @@ class StorageService {
         // Incluimos el archivo que contiene las credenciales
         require("bd-credenciales.php");
 
+//      OJO a la linea 19
         $this->pdo = new PDO(
             "mysql:host={$config['db_host']};dbname={$config['db_name']}",
-            $config['db_user'], $config['db_pass']
+            $config['db_user'], $config['db_pass'], [PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8']
         );
 
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
